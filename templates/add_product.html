@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row my-5">
+        <div class="row-cols-auto my-5 pb-5 justify-content-center">
+            {% with messages=get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p style="color:red">{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            {{ wtf.quick_form(form, novalidate=True, button_map={'submit':'primary'}) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

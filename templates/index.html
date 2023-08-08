@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<!--Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Dummy Shop</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Buy yourself!</p>
+            {% with messages=get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p style="color:red">{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for item in all_prods: %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                    </div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="{{ item.img_url }}" alt="..."/>
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{ item.name }}</h5>
+                            <!-- Product price-->
+                            <p class="mb-0 mt-3">€{{ item.price }}</p>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        {% if current_user.is_authenticated: %}
+                        <div class="text-center"><a class="btn btn-primary mt-auto" href="{{ url_for('add_to_cart', prod_id=item.prod_id) }}">Add to cart</a></div>
+                        {% else %}
+                        <div class="text-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Login to add it!">
+                            <a class="btn btn-primary mt-auto disabled" href="{{ url_for('add_to_cart', prod_id=item.prod_id) }}">Add to cart</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
