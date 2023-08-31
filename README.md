@@ -2,6 +2,11 @@
 
 The Online Shop is a Flask-based web application that provides a platform for customers to browse products, add them to their cart, and proceed to checkout. It also features a secure authentication system for user registration and login, as well as an admin panel for managing products. The application uses Stripe for payment processing.
 
+<img src="./images/products.png" alt="products" width="50%"> 
+<img src="./images/register.png" alt="register" width="50%">
+<img src="./images/add_product.png" alt="add_product" width="50%"> 
+<img src="./images/update_product.png" alt="update_product" width="50%">
+
 ## Features
 
 - User registration and login: Users can create accounts, log in, and log out. The first registration is admin.
